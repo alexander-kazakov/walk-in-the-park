@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>Walk in the Park</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <canvas id="game"></canvas>
+
+  <div id="hud">
+    <div id="mode" class="pill"></div>
+    <div id="bag" class="pill"></div>
+  </div>
+
+  <button id="questToggle" class="pill" title="Toggle checklist (J)">📋 <span id="questCount">0/8</span></button>
+  <aside id="quests" class="open">
+    <h2>🌳 Park checklist</h2>
+    <ol id="questList"></ol>
+    <div class="keys">
+      <b>WASD/Arrows</b> walk · <b>E</b> interact · <b>Space</b>/click use picker ·
+      <b>Q</b> picker mode · <b>L</b> litter (don't!) · <b>J</b> checklist · <b>M</b> mute
+    </div>
+  </aside>
+
+  <div id="toasts"></div>
+
+  <div id="dialog" hidden>
+    <div class="name"></div>
+    <div class="text"></div>
+    <div class="choices"></div>
+  </div>
+
+  <div id="minigame" class="overlay" hidden>
+    <div class="card mg-card">
+      <h2>🦆 Quack-a-Mole</h2>
+      <p class="sub">Bonk the <b>moles</b> (yes, in this park they quack). Don't bonk the <b>real ducks</b>! Golden moles are worth 3.</p>
+      <div class="mg-bar"><span>Score <b id="mgScore">0</b> / 12</span><span>⏱ <b id="mgTime">30</b>s</span><span>Best <b id="mgBest">0</b></span></div>
+      <div id="mgGrid"></div>
+      <p class="mg-msg" id="mgMsg">Click the holes or use keys 1–9.</p>
+      <div class="actions"><button id="mgStart" class="primary">Start</button><button id="mgLeave">Leave (Esc)</button></div>
+    </div>
+  </div>
+
+  <div id="jail" class="overlay" hidden>
+    <div class="card jail-card">
+      <div class="bars"></div>
+      <h2>🚓 You've been arrested!</h2>
+      <p id="jailText"></p>
+      <p class="sub">Charge: <b>Littering in a public park</b>. Sentence: <b id="jailTime">8</b> seconds in Park Jail.</p>
+      <div class="actions"><button id="jailPay">Pay the €50 fine</button></div>
+    </div>
+  </div>
+
+  <div id="title" class="overlay">
+    <div class="card title-card">
+      <h1>🌳 Walk in the Park 🦆</h1>
+      <p class="sub">A sunny afternoon, a checklist, and a garbage picker with a <i>very</i> questionable upgrade.</p>
+      <ul class="howto">
+        <li>🐕 Walk Grandma's dog. Lose the dog. Find the dog.</li>
+        <li>🗑️ Pick up litter — and don't litter, Officer Bramble is watching.</li>
+        <li>🌸 Find flowers, 🤝 make a friend, 🔥❄️ upgrade your picker, 🦆 play Quack-a-Mole.</li>
+      </ul>
+      <p class="keys"><b>WASD/Arrows</b> walk · <b>E</b> interact · <b>Space</b>/click use picker · <b>Q</b> switch mode · <b>L</b> litter · <b>J</b> checklist</p>
+      <button id="startBtn" class="primary big">Go to the park ▸</button>
+    </div>
+  </div>
+
+  <div id="win" class="overlay" hidden>
+    <div class="card">
+      <h1>🌞 What a lovely walk!</h1>
+      <p id="winText"></p>
+      <div class="actions"><button id="winClose" class="primary">Keep strolling</button></div>
+    </div>
+  </div>
+
+  <div id="touch">
+    <div id="stick"><div id="knob"></div></div>
+    <div id="tbtns">
+      <button data-k="e">E</button>
+      <button data-k=" ">⚡</button>
+      <button data-k="q">Q</button>
+      <button data-k="l">🗑️</button>
+      <button data-k="j">📋</button>
+    </div>
+  </div>
+
+  <script src="game.js"></script>
+</body>
+</html>
